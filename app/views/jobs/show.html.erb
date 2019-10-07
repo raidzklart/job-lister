@@ -1,0 +1,17 @@
+<h3 class="page-header"><%= @job.title %> (<%= @job.location %>)</h3>
+<small>Posted by: <%= @job.contact_user %> on <%= @job.created_at.strftime("%m/%d/%Y") %> at <%= @job.created_at.strftime("%k:%M %p") %></small>
+<hr>
+<p class="lead"><%= @job.description %></p>
+<ul class="list-group">
+<li class="list-group-item"><strong>Company:</strong><%= @job.company %></li>
+<li class="list-group-item"><strong>Salary:</strong><%= @job.salary %></li>
+<li class="list-group-item"><strong>Contact Email:</strong><%= @job.contact_email %></li>
+</ul>
+<br>
+<br>
+<p><%= link_to "Back", jobs_path, class: "btn btn-secondary" %>
+<%= link_to "Delete", job_path(@job), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+<%= link_to "Edit", edit_job_path(@job), class: "btn btn-primary" %>
+</p>
+<br>
+<br>

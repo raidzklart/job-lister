@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>JobLister</title>
+  <%= csrf_meta_tags %>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-light fixed-top bg-white container">
+  <%= link_to "JobLister", jobs_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+        <%= link_to jobs_path, class: "nav-link" do %>
+        Home
+        <span class="sr-only">(current)</span>
+        <% end %>
+        </li>
+        <li class="nav-item">
+        <%= link_to "Create Listing", new_job_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main role="main">
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron mt-4 container shadow-sm rounded">
+      <div class="container">
+        <h1 class="display-3">Find A Job</h1>
+        <%= form_with(url: "/categories", local: true, method: "get") do%>
+        <select name="category" class="form-control">
+          <option value="0">Choose a category</option>
+          <% @categories.each do |c| %>
+          <option value="<%=c.id%>"><%= c.name %></option>
+          <% end %>
+        </select>
+        <br>
+        <%= submit_tag("Search", class: "btn btn-lg btn-success") %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="container">
+      <% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>" role="alert">
+        <%= value %>
+      </div>
+  <% end %>
+      <!-- Example row of columns -->
+      <%= yield %>
+
+    </div> <!-- /container -->
+
+  </main>
+  <footer class="container">
+    <p>&copy; JobLister 2017-2019</p>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script>
+    window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')
+  </script>
+  <script src="/docs/4.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<h2 class="page-header">Create Job Listing</h2>
+<%= form_for( @job, :url => { :action => "create" }) do |f| %>
+  <div class="form-group">
+  <label>Company</label>
+  <%= f.text_field :company, class: "form-control" %>
+  </div>
+    <div class="form-group">
+  <label>Category</label>
+  
+<% categories_array = Category.all.map { |c| [c.name, c.id] } %>
+  <%= f.select :category_id, options_for_select(categories_array), {prompt: "Choose a category"}, {class: "form-control"}  %>
+  </div>
+    <div class="form-group">
+  <label>Job Title</label>
+  <%= f.text_field :title, class: "form-control" %>
+  </div>
+    <div class="form-group">
+  <label>Description</label>
+  <%= f.text_area :description, size: '50x10', class: "form-control" %>
+  </div>
+    <div class="form-group">
+  <label>Location </label>
+  <%= f.text_field :location, class: "form-control" %>
+  </div>
+    <div class="form-group">
+  <label>Salary</label>
+  <%= f.text_field :salary, class: "form-control" %>
+  </div>
+    <div class="form-group">
+  <label>Contact User  </label>
+  <%= f.text_field :contact_user, class: "form-control" %>
+  </div>
+  <div class="form-group">
+  <label>Contact Email  </label>
+  <%= f.text_field :contact_email, class: "form-control" %>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-lg btn-success btn-block" %>
+<% end %>
